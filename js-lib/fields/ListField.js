@@ -73,8 +73,6 @@ class ListField extends Field {
     {
         js0.args(arguments, [ 'number', 'string' ]);
 
-        console.log('Adding', key, value);
-
         if (this._items.has(key))
             throw new Error(`Key '${key}' already exists in list.`);
 
