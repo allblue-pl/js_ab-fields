@@ -46,11 +46,25 @@ class ListField extends Field {
         if (value === null)
             return;
 
+        let oldKeys = this.$keys();
+
         if (value instanceof Array) {
+            for (let key of oldKeys) {
+                if (!Number.isInteger(key))
+                    continue;
+
+                if (key < 0 || key >= value.length)
+                    this.$delete(key);
+            }
+
             for (let i = 0; i < value.length; i++)
                 this.$set(i, value[i]);
         } else {
-            // throw new Error('Not implemented yet.');
+            for (let key of oldKeys) {
+                if (!value.has(key))
+                    this.$delete(key);
+            }
+            
             for (let [ key, item ] of value)
                 this.$set(key, item);
         }
@@ -118,6 +132,11 @@ class ListField extends Field {
     $has(key)
     {
         return this._items.has(key);
+    }
+
+    $keys()
+    {
+        return this._items.keys();
     }
 
     $push(value = null)
