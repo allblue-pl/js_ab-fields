@@ -142,12 +142,12 @@ class ListField extends Field {
     $push(value = null)
     {
         let index = 0;
-        if (this._items.size === 0)
-            this.$add(index);
 
-        let lastKey = this._items.getKeyAt(this._items.size - 1);
-        if (Number.isInteger(lastKey))
-            index = lastKey + 1;
+        if (this._items.size > 0) {
+            let lastKey = this._items.getKeyAt(this._items.size - 1);
+            if (Number.isInteger(lastKey))
+                index = lastKey + 1;
+        }
 
         while (this.$has(index))
             index++;
