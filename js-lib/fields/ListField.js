@@ -50,8 +50,10 @@ class ListField extends Field {
 
         if (value instanceof Array) {
             for (let key of oldKeys) {
-                if (!Number.isInteger(key))
+                if (!Number.isInteger(key)) {
+                    this.$delete(key);
                     continue;
+                }
 
                 if (key < 0 || key >= value.length)
                     this.$delete(key);
