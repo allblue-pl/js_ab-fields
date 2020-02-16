@@ -17,6 +17,13 @@ class ObjectField extends Field {
     set $value(value) {
         js0.args(arguments, js0.RawObject);
 
+        if (value === null) {
+            for (let key in this._fields)
+                this._fields[key].$value = null;
+
+            return;
+        }
+
         for (let key in value) {
             if (key in this._fields)
                 this._fields[key].$value = value[key];
