@@ -87,20 +87,48 @@ class ListField extends Field {
 
     $add(key, value = null)
     {
-        js0.args(arguments, [ 'number', 'string' ]);
+        js0.args(arguments, [ 'number', 'string' ], null);
+
+        this.$addAt(this.$size, key, value);
+
+        // if (this._items.has(key))
+        //     throw new Error(`Key '${key}' already exists in list.`);
+
+        // let keys = this.__keys.slice();
+        // keys.push(key);
+
+        // let itemField = this.__definition.item().create(keys);
+        // this._items.set(key, itemField);
+
+        // for (let listener of this.__definition.listeners) {
+        //     if ('add' in listener)
+        //         listener.add(key, this.__keys);
+        // }
+
+        // this.$get(key).$value = value;
+    }
+
+    $addAt(index, key, value = null)
+    {
+        js0.args(arguments, 'number', [ 'number', 'string' ], null);
 
         if (this._items.has(key))
             throw new Error(`Key '${key}' already exists in list.`);
 
+        if (index < 0)
+            throw new Error(`Index '${index}' cannot be lower than 0.`);
+        if (index > this.$size)
+            throw new Error(`Index '${index}' cannot be higher than list size '${this.$size}'.`);
+
         let keys = this.__keys.slice();
-        keys.push(key);
+        keys.splice(index, 0, key);
 
         let itemField = this.__definition.item().create(keys);
-        this._items.set(key, itemField);
+        this._items.addAt(index, key, itemField);
 
         for (let listener of this.__definition.listeners) {
             if ('add' in listener)
-                listener.add(key, this.__keys);
+                listener.add(index, key, this.__keys);
         }
 
         this.$get(key).$value = value;
@@ -121,12 +149,26 @@ class ListField extends Field {
         }
     }
 
+    $deleteAt(index)
+    {
+        js0.args(arguments, [ 'number', ]);
+
+        if (index < 0)
+            throw new Error(`Index '${index}' cannot be lower than 0.`);
+
+        if (index >= this.$size)
+            throw new Error(`Index '${index}' is higher than list size '${this.$size}.`);
+
+        let key = this._items.getKeyAt(index);
+        this.$delete(key);
+    }
+
     $get(key)
     {
         js0.args(arguments, [ 'number', 'string' ]);
 
         if (!(this._items.has(key)))
-            throw new Error(`Item '${key}' does not exist in list.`);
+            throw new Error(`Item with key '${key}' does not exist in list.`);
 
         return this._items.get(key);
     }
