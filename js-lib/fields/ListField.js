@@ -121,7 +121,8 @@ class ListField extends Field {
             throw new Error(`Index '${index}' cannot be higher than list size '${this.$size}'.`);
 
         let keys = this.__keys.slice();
-        keys.splice(index, 0, key);
+        keys.push(key);
+        // keys.splice(index, 0, key);
 
         let itemField = this.__definition.item().create(keys);
         this._items.addAt(index, key, itemField);

@@ -37,16 +37,22 @@ class ObjectDefinition extends Definition
         return this._fieldDefinitions[fieldName];
     }
 
-    list(fieldName)
+    list(fieldName, overwrite = false)
     {
         js0.args(arguments, 'string');
 
         if (fieldName in this._fieldDefinitions) {
             let def = this._fieldDefinitions[fieldName];
-            if (!(def instanceof ListDefinition))
-                throw new Error(`Field '${fieldName}' already defined not as 'List'.`);
-          
-            return def;
+
+            if (!overwrite) {
+                if (!(def instanceof ListDefinition))
+                    throw new Error(`Field '${fieldName}' already defined not as 'List'.`);
+
+                return def;
+            } else {
+                if (def instanceof ListDefinition)
+                    return def;
+            }
         }
 
         let def = new ListDefinition();
@@ -55,15 +61,21 @@ class ObjectDefinition extends Definition
         return def;
     }
 
-    object(fieldName)
+    object(fieldName, overwrite = false)
     {
         js0.args(arguments, 'string');
 
         if (fieldName in this._fieldDefinitions) {
             let def = this._fieldDefinitions[fieldName];
-            if (!(def instanceof ObjectDefinition))
-                throw new Error(`Field '${fieldName}' already defined not as 'Var'.`);
-            return def;
+
+            if (!overwrite) {
+                if (!(def instanceof ObjectDefinition))
+                    throw new Error(`Field '${fieldName}' already defined not as 'Object'.`);
+                return def;
+            } else {
+                if (def instanceof ObjectDefinition)
+                    return def;
+            }
         }
 
         let def = new ObjectDefinition();
@@ -72,15 +84,21 @@ class ObjectDefinition extends Definition
         return def;
     }
 
-    var(fieldName)
+    var(fieldName, overwrite = false)
     {   
         js0.args(arguments, 'string');
 
         if (fieldName in this._fieldDefinitions) {
             let def = this._fieldDefinitions[fieldName];
-            if (!(def instanceof VarDefinition))
-                throw new Error(`Field '${fieldName}' already defined not as 'Var'.`);
-            return def;
+
+            if (!overwrite) {
+                if (!(def instanceof VarDefinition))
+                    throw new Error(`Field '${fieldName}' already defined not as 'Var'.`);
+                return def;
+            } else {
+                if (def instanceof VarDefinition)
+                    return def;
+            }
         }
 
         let def = new VarDefinition();
@@ -103,7 +121,12 @@ class ObjectDefinition extends Definition
                     return field.$value;
                 },
                 set: (value) => {
-                    field.$value = value;
+                    try {
+                        field.$value = value;   
+                    } catch (err) {
+                        console.error('ABFields Stack: ', fieldName);
+                        throw err;
+                    }
                 },
                 enumerable: true,
             });

@@ -25,9 +25,14 @@ class ObjectField extends Field {
         }
 
         for (let key in value) {
-            if (key in this._fields)
-                this._fields[key].$value = value[key];
-            else if (abFields.Debug)
+            if (key in this._fields) {
+                try {
+                    this._fields[key].$value = value[key];
+                } catch (err) {
+                    console.error('ABFields Stack: ', key);
+                    throw err;
+                }
+            } else if (abFields.Debug)
                 console.warn(new Error(`Field '${key}' not defined in Object.`));
         }
     }
