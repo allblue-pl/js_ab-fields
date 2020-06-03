@@ -64,6 +64,8 @@ class ObjectField extends Field {
         for (let listener of this._listeners) {
             if ('delete' in listener)
                 listener.delete(key, this._parentFields._keys);
+            if ('change' in listener)
+                listener.change(value, this._parentFields._keys);
         }
     }
 

@@ -18,8 +18,8 @@ class VarField extends Field
         this._value = value;
 
         for (let listener of this.__definition.listeners) {
-            if ('set' in listener)
-                listener.set(value, this.__keys);
+            if ('change' in listener)
+                listener.change(value, this.__keys);
         }
     }
 

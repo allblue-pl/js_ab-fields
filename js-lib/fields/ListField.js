@@ -130,6 +130,8 @@ class ListField extends Field {
         for (let listener of this.__definition.listeners) {
             if ('add' in listener)
                 listener.add(index, key, this.__keys);
+            if ('change' in listener)
+                listener.change(value, this.__keys);
         }
 
         this.$get(key).$value = value;
@@ -147,6 +149,8 @@ class ListField extends Field {
         for (let listener of this.__definition._listeners) {
             if ('delete' in listener)
                 listener.delete(key, this.__keys);
+            if ('change' in listener)
+                listener.change(value, this.__keys);
         }
     }
 

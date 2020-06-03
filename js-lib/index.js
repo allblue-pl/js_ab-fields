@@ -1,6 +1,10 @@
 'use strict';
 
 const
+    Definition = require('./definitions/Definition'),
+    Field = require('./fields/Field'),
+
+
     ListDefinition = require('./definitions/ListDefinition'),
     ListField = require('./fields/ListField'),
 
@@ -19,6 +23,9 @@ function setDebug(debug) {
 function define() {
     return new ObjectDefinition();
 }
+
+module.exports.Definition = Definition;
+module.exports.Field = Field;
 
 module.exports.ListDefinition = ListDefinition;
 module.exports.ListField = ListField;
