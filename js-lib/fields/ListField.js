@@ -210,9 +210,9 @@ class ListField extends Field {
         js0.args(arguments, [ 'number', 'string' ]);
 
         if (!this.$has(key))
-            this.$add(key);
-
-        this.$get(key).$value = value;
+            this.$add(key, value);
+        else
+            this.$get(key).$value = value;
     }
 
 }
