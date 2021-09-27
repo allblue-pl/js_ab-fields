@@ -183,6 +183,17 @@ class ListField extends Field {
         return this._items.has(key);
     }
 
+    $index(key)
+    {
+        let keys = this.$keys();
+        for (let i = 0; i < keys.length; i++) {
+            if (keys[i] === key)
+                return i;
+        }
+
+        return -1;
+    }
+
     $keys()
     {
         return this._items.keys();
