@@ -218,7 +218,7 @@ class ListField extends Field {
 
     $set(key, value)
     {
-        js0.args(arguments, [ 'number', 'string' ]);
+        js0.args(arguments, [ 'number', 'string' ], null);
 
         if (!this.$has(key))
             this.$add(key, value);

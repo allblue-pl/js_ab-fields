@@ -39,7 +39,7 @@ class ObjectDefinition extends Definition
 
     list(fieldName, overwrite = false)
     {
-        js0.args(arguments, 'string');
+        js0.args(arguments, 'string', [ 'boolean', js0.Default ]);
 
         if (fieldName in this._fieldDefinitions) {
             let def = this._fieldDefinitions[fieldName];
