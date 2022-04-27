@@ -87,7 +87,7 @@ class ListField extends Field {
 
     $add(key, value = null)
     {
-        js0.args(arguments, [ 'number', 'string' ], null);
+        js0.args(arguments, [ 'number', 'string' ], [ null, js0.Default ]);
 
         this.$addAt(this.$size, key, value);
 
