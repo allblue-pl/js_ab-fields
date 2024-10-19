@@ -4,7 +4,6 @@ const
     js0 = require('js0'),
 
     abFields = require('../.'),
-    ObjectDefinition = require('../definitions/ObjectDefinition'),
 
     Field = require('./Field')
 ;
@@ -40,7 +39,7 @@ class ObjectField extends Field {
 
     constructor(definition, keys)
     { super(definition, keys);
-        js0.args(arguments, ObjectDefinition, Array);
+        js0.args(arguments, require('../definitions/ObjectDefinition'), Array);
 
         this._root = {};
         this._fields = {};

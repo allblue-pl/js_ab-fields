@@ -3,8 +3,6 @@
 const 
     js0 = require('js0'),
 
-    ListDefinition = require('../definitions/ListDefinition'),
-
     Field = require('./Field')
 ;
 
@@ -74,7 +72,7 @@ class ListField extends Field {
 
     constructor(definition, keys)
     { super(definition, keys);
-        js0.args(arguments, ListDefinition, Array);
+        js0.args(arguments, require('../definitions/ListDefinition'), Array);
 
         this._root = {};
         this._items = new js0.List();

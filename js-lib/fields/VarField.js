@@ -3,8 +3,6 @@
 const
     js0 = require('js0'),
 
-    VarDefinition = require('../definitions/VarDefinition'),
-
     Field = require('./Field')
 ;
 
@@ -25,7 +23,7 @@ class VarField extends Field
 
     constructor(definition, keys)
     { super(definition, keys);
-        js0.args(arguments, VarDefinition, Array);
+        js0.args(arguments, require('../definitions/VarDefinition'), Array);
 
         this._value = undefined;
     }
