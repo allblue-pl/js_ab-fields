@@ -70,21 +70,18 @@ class ListField extends Field {
         }
     }
 
-    constructor(definition, keys)
-    { super(definition, keys);
+    constructor(definition, keys) { super(definition, keys);
         js0.args(arguments, require('../definitions/ListDefinition'), Array);
 
         this._root = {};
         this._items = new js0.List();
     }   
 
-    [Symbol.iterator]()
-    {
+    [Symbol.iterator]() {
         return new ListField.Iterator(this);
     }
 
-    $add(key, value = null)
-    {
+    $add(key, value = null) {
         js0.args(arguments, [ 'number', 'string' ], [ null, js0.Default ]);
 
         this.$addAt(this.$size, key, value);
@@ -106,8 +103,7 @@ class ListField extends Field {
         // this.$get(key).$value = value;
     }
 
-    $addAt(index, key, value = null)
-    {
+    $addAt(index, key, value = null) {
         js0.args(arguments, 'number', [ 'number', 'string' ], null);
 
         if (this._items.has(key))
@@ -135,8 +131,7 @@ class ListField extends Field {
         this.$get(key).$value = value;
     }
 
-    $delete(key)
-    {
+    $delete(key) {
         js0.args(arguments, [ 'number', 'string' ]);
 
         if (!this.$has(key))
@@ -152,8 +147,7 @@ class ListField extends Field {
         }
     }
 
-    $deleteAt(index)
-    {
+    $deleteAt(index) {
         js0.args(arguments, [ 'number', ]);
 
         if (index < 0)
@@ -166,8 +160,7 @@ class ListField extends Field {
         this.$delete(key);
     }
 
-    $get(key)
-    {
+    $get(key) {
         js0.args(arguments, [ 'number', 'string' ]);
 
         if (!(this._items.has(key)))
@@ -176,13 +169,11 @@ class ListField extends Field {
         return this._items.get(key);
     }
 
-    $has(key)
-    {
+    $has(key) {
         return this._items.has(key);
     }
 
-    $index(key)
-    {
+    $index(key) {
         let keys = this.$keys();
         for (let i = 0; i < keys.length; i++) {
             if (keys[i] === key)
@@ -192,13 +183,11 @@ class ListField extends Field {
         return -1;
     }
 
-    $keys()
-    {
+    $keys() {
         return this._items.keys();
     }
 
-    $push(value = null)
-    {
+    $push(value = null) {
         let index = 0;
 
         if (this._items.size > 0) {
@@ -214,8 +203,7 @@ class ListField extends Field {
         this.$get(index).$value = value;
     }
 
-    $set(key, value)
-    {
+    $set(key, value) {
         js0.args(arguments, [ 'number', 'string' ], null);
 
         if (!this.$has(key))
@@ -231,8 +219,7 @@ module.exports = ListField;
 Object.defineProperties(ListField, {
 
     Iterator: { value:
-    class ListField_Iterator
-    {
+    class ListField_Iterator {
 
         constructor(listField)
         {

@@ -12,13 +12,11 @@ const
 class ListDefinition extends Definition
 {
 
-    constructor()
-    { super();
+    constructor() { super();
         this._itemDefinition = null;
     }
 
-    item(itemDefinitionClass = null)
-    {
+    item(itemDefinitionClass = null) {
         js0.args(arguments, [ js0.Default, 'function' ]);
 
         if (this._itemDefinition === null) {
@@ -41,8 +39,7 @@ class ListDefinition extends Definition
 
 
     /* Definition Overrides */
-    create(keys = [], root = null, fieldName = null)
-    {
+    create(keys = [], root = null, fieldName = null) {
         js0.args(arguments, [ js0.Default, Array ], [ js0.Default, 'object' ], 
                 [ js0.Default, 'string' ]);
 

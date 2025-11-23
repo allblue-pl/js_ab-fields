@@ -12,13 +12,11 @@ class Definition
     }
 
 
-    constructor()
-    {
+    constructor() {
         this._listeners = [];
     }
 
-    addListener(listener)
-    {
+    addListener(listener) {
         js0.args(arguments, 'object');
 
         this._listeners.push(listener);

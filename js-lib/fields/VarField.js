@@ -21,8 +21,7 @@ class VarField extends Field
         }
     }
 
-    constructor(definition, keys)
-    { super(definition, keys);
+    constructor(definition, keys) { super(definition, keys);
         js0.args(arguments, require('../definitions/VarDefinition'), Array);
 
         this._value = undefined;

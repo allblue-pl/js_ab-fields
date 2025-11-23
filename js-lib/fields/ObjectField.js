@@ -14,7 +14,7 @@ class ObjectField extends Field {
         return this._root;
     }
     set $value(value) {
-        js0.args(arguments, js0.RawObject);
+        js0.args(arguments, [ js0.RawObject, js0.Null ]);
 
         if (value === null) {
             for (let key in this._fields)
@@ -37,8 +37,7 @@ class ObjectField extends Field {
     }
 
 
-    constructor(definition, keys)
-    { super(definition, keys);
+    constructor(definition, keys) { super(definition, keys);
         js0.args(arguments, require('../definitions/ObjectDefinition'), Array);
 
         this._root = {};
@@ -51,8 +50,7 @@ class ObjectField extends Field {
         }
     }   
 
-    $delete(key)
-    {
+    $delete(key) {
         js0.args(arguments, [ 'number', 'string' ]);
 
         if (!(key in this._fields))
@@ -68,16 +66,14 @@ class ObjectField extends Field {
         }
     }
 
-    $get(fieldName)
-    {
+    $get(fieldName) {
         if (!this.$exists(fieldName))
             throw new Error(`Field '${fieldName}' does not exist in object.`);
 
         return this._fields[fieldName];
     }
 
-    $exists(fieldName)
-    {
+    $exists(fieldName) {
         return fieldName in this._fields;
     }
 

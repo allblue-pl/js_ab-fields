@@ -13,8 +13,7 @@ class Field
     set $value(value) { js0.virtual(this); }
 
 
-    constructor(definition, keys)
-    {
+    constructor(definition, keys) {
         js0.args(arguments, Definition, Array);
 
         this.__definition = definition;

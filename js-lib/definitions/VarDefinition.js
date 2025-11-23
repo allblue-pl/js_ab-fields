@@ -11,14 +11,12 @@ const
 class VarDefinition extends Definition
 {
 
-    constructor()
-    { super();
+    constructor() { super();
 
     }
 
     /* Definition Overrides */
-    create(keys = [], root = null, fieldName = null)
-    {
+    create(keys = [], root = null, fieldName = null) {
         js0.args(arguments, [ js0.Default, Array ], [ js0.Default, 'object' ], 
                 [ js0.Default, 'string' ]);
 

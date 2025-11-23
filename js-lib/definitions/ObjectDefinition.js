@@ -18,27 +18,23 @@ class ObjectDefinition extends Definition
     }
 
 
-    constructor()
-    { super();
+    constructor() { super();
 
         this._fieldDefinitions = {};
     }
 
-    exists(fieldName)
-    {
+    exists(fieldName) {
         return fieldName in this._fieldDefinitions;
     }
 
-    get(fieldName)
-    {
+    get(fieldName) {
         if (!this.exists(fieldName))
             throw new Error(`Field definition '${fieldName}' does not exist.`);
 
         return this._fieldDefinitions[fieldName];
     }
 
-    list(fieldName, overwrite = false)
-    {
+    list(fieldName, overwrite = false) {
         js0.args(arguments, 'string', [ 'boolean', js0.Default ]);
 
         if (fieldName in this._fieldDefinitions) {
@@ -61,8 +57,7 @@ class ObjectDefinition extends Definition
         return def;
     }
 
-    object(fieldName, overwrite = false)
-    {
+    object(fieldName, overwrite = false) {
         js0.args(arguments, 'string');
 
         if (fieldName in this._fieldDefinitions) {
@@ -84,8 +79,7 @@ class ObjectDefinition extends Definition
         return def;
     }
 
-    var(fieldName, overwrite = false)
-    {   
+    var(fieldName, overwrite = false) {   
         js0.args(arguments, 'string');
 
         if (fieldName in this._fieldDefinitions) {
@@ -108,8 +102,7 @@ class ObjectDefinition extends Definition
     }
 
     /* Definition Overrides */
-    create(keys = [], root = null, fieldName = null)
-    {
+    create(keys = [], root = null, fieldName = null) {
         js0.args(arguments, [ js0.Default, Array ], [ js0.Default, 'object' ], 
                 [ js0.Default, 'string' ]);
 
