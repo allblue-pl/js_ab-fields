@@ -1,14 +1,8 @@
-'use strict';
+import js0 from "js0";
+import Field from "./Field";
+import VarDefinition from "../definitions/VarDefinition";
 
-const
-    js0 = require('js0'),
-
-    Field = require('./Field')
-;
-
-class VarField extends Field
-{
-
+export default class VarField extends Field {
     get $value() {
         return this._value;
     }
@@ -22,10 +16,9 @@ class VarField extends Field
     }
 
     constructor(definition, keys) { super(definition, keys);
-        js0.args(arguments, require('../definitions/VarDefinition'), Array);
+        js0.args(arguments, VarDefinition, Array);
 
         this._value = undefined;
     }
 
 }
-module.exports = VarField;

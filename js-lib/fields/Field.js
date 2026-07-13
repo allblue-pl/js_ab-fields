@@ -1,14 +1,7 @@
-'use strict';
+import js0 from "js0";
+import Definition from "../definitions/Definition";
 
-const
-    js0 = require('js0'),
-
-    Definition = require('../definitions/Definition')
-;
-
-class Field
-{
-
+export default class Field {
     get $value() { js0.virtual(this); }
     set $value(value) { js0.virtual(this); }
 
@@ -19,6 +12,4 @@ class Field
         this.__definition = definition;
         this.__keys = keys;
     }
-
 }
-module.exports = Field;

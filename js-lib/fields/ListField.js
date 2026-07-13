@@ -1,13 +1,8 @@
-'use strict';
+import js0 from "js0";
+import Field from "./Field";
+import ListDefinition from "../definitions/ListDefinition";
 
-const 
-    js0 = require('js0'),
-
-    Field = require('./Field')
-;
-
-class ListField extends Field {
-
+export default class ListField extends Field {
     get $size() {
         return this._items.size;
     }
@@ -71,7 +66,7 @@ class ListField extends Field {
     }
 
     constructor(definition, keys) { super(definition, keys);
-        js0.args(arguments, require('../definitions/ListDefinition'), Array);
+        js0.args(arguments, ListDefinition, Array);
 
         this._root = {};
         this._items = new js0.List();
@@ -211,9 +206,7 @@ class ListField extends Field {
         else
             this.$get(key).$value = value;
     }
-
 }
-module.exports = ListField;
 
 
 Object.defineProperties(ListField, {

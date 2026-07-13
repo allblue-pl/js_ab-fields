@@ -1,16 +1,8 @@
-'use strict';
+import js0 from "js0";
+import VarField from "../fields/VarField";
+import Definition from "./Definition";
 
-const 
-    js0 = require('js0'),
-
-    VarField = require('../fields/VarField'),
-
-    Definition = require('./Definition')
-;
-
-class VarDefinition extends Definition
-{
-
+export default class VarDefinition extends Definition {
     constructor() { super();
 
     }
@@ -37,6 +29,4 @@ class VarDefinition extends Definition
         return field;
     }
     /* / Definition Overrides */
-
 }
-module.exports = VarDefinition;

@@ -1,18 +1,12 @@
-'use strict';
+import js0 from "js0";
 
-const 
-    js0 = require('js0'),
+import ObjectField from "../fields/ObjectField";
 
-    ObjectField = require('../fields/ObjectField'),
+import Definition from "./Definition";
+import ListDefinition from "./ListDefinition";
+import VarDefinition from "./VarDefinition";
 
-    Definition = require('./Definition'),
-    ListDefinition = require('./ListDefinition'),
-    VarDefinition = require('./VarDefinition')
-;
-
-class ObjectDefinition extends Definition
-{
-
+export default class ObjectDefinition extends Definition {
     get fields() {
         return this._fieldDefinitions;
     }
@@ -128,6 +122,4 @@ class ObjectDefinition extends Definition
         return field;
     }
     /* / Definition Overrides */
-
 }
-module.exports = ObjectDefinition;

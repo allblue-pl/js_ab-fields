@@ -1,15 +1,9 @@
-'use strict';
+import js0 from "js0";
+import abFields from "../index";
+import Field from "./Field";
+import ObjectDefinition from "../definitions/ObjectDefinition";
 
-const 
-    js0 = require('js0'),
-
-    abFields = require('../.'),
-
-    Field = require('./Field')
-;
-
-class ObjectField extends Field {
-
+export default class ObjectField extends Field {
     get $value() {
         return this._root;
     }
@@ -38,7 +32,7 @@ class ObjectField extends Field {
 
 
     constructor(definition, keys) { super(definition, keys);
-        js0.args(arguments, require('../definitions/ObjectDefinition'), Array);
+        js0.args(arguments, ObjectDefinition, Array);
 
         this._root = {};
         this._fields = {};
@@ -78,4 +72,3 @@ class ObjectField extends Field {
     }
 
 }
-module.exports = ObjectField;

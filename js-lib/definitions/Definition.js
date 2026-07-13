@@ -1,12 +1,6 @@
-'use strict'
+import js0 from "js0"
 
-const
-    js0 = require('js0')
-;
-
-class Definition
-{
-
+export default class Definition {
     get listeners() {
         return this._listeners;
     }
@@ -24,6 +18,4 @@ class Definition
 
 
     create(keys = [], root = null, fieldName = null) { js0.virtual(this); }
-
 }
-module.exports = Definition;
