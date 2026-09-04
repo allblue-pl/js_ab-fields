@@ -196,6 +196,8 @@ export default class ListField extends Field {
 
         this.$add(index, value);
         this.$get(index).$value = value;
+
+        return index;
     }
 
     $set(key, value) {
